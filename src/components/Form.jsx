@@ -9,7 +9,8 @@ const initialValues = {
 }
 
 
-export default function Form() {
+export default function Form(props) {
+    const { answersList, setAnswersList } = props
     const [userData, setUserData] = useState(initialValues)
 
     function handleChange(event) {
@@ -37,8 +38,9 @@ export default function Form() {
 
     function handleSubmit(event) {
         event.preventDefault()
-        console.log("Submitted: ", { userData })
-        setUserData(initialValues)
+
+        setAnswersList([...answersList, userData]) // save submitted form to answersList
+        setUserData(initialValues) // reset form
     }
 
     return (
